@@ -40,7 +40,7 @@ Then:
   let the user pick from the card if the host renders it. If no usable card
   is displayed, present the returned options as a short numbered list and
   ask the user to choose. Preserve returned identifiers for the subsequent
-  retrieval. Never assume a Claude-specific card works in ChatGPT.
+  retrieval. Only rely on cards the current host actually renders.
 - If nothing returned is a good match, say so plainly rather than
   substituting general knowledge.
 

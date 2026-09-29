@@ -27,8 +27,6 @@ The installable plugin root is `in-case-of-crisis/`:
 - `skills/in-case-of-crisis/SKILL.md`: protocol lookup workflow.
 - `icon.png` and `LICENSE`: branding and redistribution license.
 
-The original `.claude-plugin/plugin.json` remains for existing Claude consumers;
-its 0.1.0 metadata is historical. OpenAI packages exclude that manifest.
 There are no runtime dependencies or local server processes in this repository.
 
 ## Build downloadable packages
@@ -44,17 +42,15 @@ This creates two archives in `dist/`:
 - `in-case-of-crisis-0.2.0.zip`: the standalone plugin and MCP configuration for compatible local hosts.
 - `in-case-of-crisis-skills-0.2.0.zip`: a skill bundle to attach to a **With MCP** submission. It deliberately omits connection configuration; it is not a functional standalone skills-only service.
 
-Upload this repository to your chosen public GitHub repository and attach the
-archives to a release. Include hidden files when uploading source. The existing
-Git remote points to the original Claude repository; choose your intended target
-before pushing. No new repository URL has been assumed in the manifests.
+The source repository is [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt).
+Attach the archives to a GitHub release. Include hidden plugin configuration
+files when uploading source.
 
 ## Make it available in ChatGPT
 
 GitHub hosts the source and release downloads. Public listing in ChatGPT requires
 submission, approval, and publication through OpenAI. Follow
 [Publishing](docs/publishing.md) and run the [review scenarios](docs/review-tests.md).
-Do not tell users to drag a Claude `.plugin` file into ChatGPT.
 
 For development, connect the MCP endpoint through ChatGPT developer mode using
 [OpenAI's quickstart](https://developers.openai.com/plugins/quickstart), authorize

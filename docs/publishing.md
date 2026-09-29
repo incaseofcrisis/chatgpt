@@ -2,8 +2,8 @@
 
 ## GitHub release
 
-1. Choose a public repository under the publisher's control. This checkout still
-   uses the original Claude repository as `origin`; verify the target before pushing.
+1. Use [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt),
+   the repository configured as `origin` in this checkout.
 2. Upload the source, including the plugin's hidden compatibility files.
 3. Run `python3 bin/package-plugin.py` and attach both `dist/` archives to a release.
 4. Keep versions in the portable manifest, OpenAI compatibility manifest, and skill
@@ -11,8 +11,7 @@
 
 ## Public ChatGPT listing
 
-Use OpenAI's [submission guide](https://developers.openai.com/plugins/deploy/submission)
-and [Claude migration guide](https://developers.openai.com/plugins/guides/submit-claude-plugin).
+Use OpenAI's [submission guide](https://developers.openai.com/plugins/deploy/submission).
 Choose **With MCP** and supply the endpoint from `in-case-of-crisis/mcp.json`.
 Attach the generated skills archive in the same draft. GitHub publication and
 OpenAI publication are separate steps.

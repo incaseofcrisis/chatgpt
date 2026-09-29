@@ -1,0 +1,33 @@
+{
+  "name": "in-case-of-crisis",
+  "version": "0.2.0",
+  "description": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis.",
+  "author": {
+    "name": "RockDove Solutions"
+  },
+  "license": "MIT",
+  "keywords": [
+    "workplace-safety",
+    "emergency-protocols",
+    "in-case-of-crisis"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "In Case of Crisis",
+    "shortDescription": "Find your approved workplace emergency protocols.",
+    "longDescription": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis. Requires an In Case of Crisis account and authorization. No organizational protocols are bundled.",
+    "developerName": "RockDove Solutions",
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Find our workplace fire protocol.",
+      "Show our severe weather procedures.",
+      "Browse our emergency response plans."
+    ],
+    "brandColor": "#203864",
+    "composerIcon": "./icon.png",
+    "logo": "./icon.png",
+    "privacyPolicyURL": "https://www.incaseofcrisis.ai/privacy",
+    "capabilities": []
+  }
+}

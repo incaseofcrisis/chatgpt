@@ -1,0 +1,11 @@
+{
+  "name": "in-case-of-crisis",
+  "version": "0.1.0",
+  "description": "Surfaces an organization's own approved crisis, emergency, and incident-response protocols the moment a workplace safety situation comes up.",
+  "author": {
+    "name": "RockDove Solutions"
+  },
+  "icon": "./icon.png",
+  "license": "MIT",
+  "privacyPolicyUrl": "https://www.incaseofcrisis.ai/privacy"
+}

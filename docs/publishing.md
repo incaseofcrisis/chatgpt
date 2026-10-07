@@ -26,9 +26,10 @@ publish through the portal.
 
 The original gateway configuration declares HTTP but supplied no interoperability
 results. Verify Streamable HTTP and OAuth against the real host; do not change
-transport based solely on a URL suffix. Confirm all three expected tools and
-parameter schemas. Check that selection cards work in ChatGPT or return useful
-text options. Tool metadata must accurately reflect real server side effects.
+transport based solely on a URL suffix. Confirm both tools (`list_crisis_protocols` and `get_crisis_protocol`) and
+their parameter schemas, including required `event_id` on retrieval. Verify
+that ambiguous matches are presented as text choices and the selected ID is
+used to fetch the protocol. Tool metadata must accurately reflect real server side effects.
 
 Use synthetic protocols in separate test organizations to check access boundaries,
 revocation, empty results, and failures. Do not place credentials in this repository

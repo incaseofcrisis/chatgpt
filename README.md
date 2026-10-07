@@ -1,7 +1,7 @@
 # In Case of Crisis — ChatGPT plugin
 
 Retrieve your organization's approved workplace emergency protocols through
-ChatGPT and Codex. Built by RockDove Solutions. Version **0.2.0**, MIT licensed.
+ChatGPT and Codex. Built by RockDove Solutions. Version **0.2.1**, MIT licensed.
 
 The plugin bundles a workflow skill and a connection to the existing In Case
 of Crisis MCP gateway. It includes no customer protocols or credentials.
@@ -16,6 +16,24 @@ is required. Public availability of the package does not grant account access.
 
 This is a protocol lookup assistant, not an emergency dispatch service.
 In immediate danger, contact local emergency services or your site's responders.
+
+## Tools
+
+The connector contract has two tools, used in sequence:
+
+| Tool | Purpose and inputs |
+| --- | --- |
+| `list_crisis_protocols` | Search approved material with optional `query`; omit it to browse the catalogue. Optional `protocol_type`: `All` (default), `Custom` (organization plans), or `Sponsored` (ICC-curated protocols with citations). Set a filter only when requested. |
+| `get_crisis_protocol` | Retrieve one protocol's full procedure, escalation contacts and citation. Requires `event_id` from a list result. Pass original user wording as `asked`; `name` is informational only. |
+
+Both tools accept optional `model` audit metadata; the skill leaves it unset.
+For ambiguous matches, the assistant lists the returned names and asks the user
+to choose, then retrieves the selected ID. There is no separate selection-card
+tool in this contract. Same-named protocols must be distinguished by their IDs.
+
+Contract synchronized from the supplied reference project's skill and README on
+**2026-10-07**. This is a source-based update, not a successful live MCP discovery.
+The connector owns the tool definitions and may change independently of this package.
 
 ## Package contents
 
@@ -39,8 +57,8 @@ python3 bin/package-plugin.py
 
 This creates two archives in `dist/`:
 
-- `in-case-of-crisis-0.2.0.zip`: the standalone plugin and MCP configuration for compatible local hosts.
-- `in-case-of-crisis-skills-0.2.0.zip`: a skill bundle to attach to a **With MCP** submission. It deliberately omits connection configuration; it is not a functional standalone skills-only service.
+- `in-case-of-crisis-0.2.1.zip`: the standalone plugin and MCP configuration for compatible local hosts.
+- `in-case-of-crisis-skills-0.2.1.zip`: a skill bundle to attach to a **With MCP** submission. It deliberately omits connection configuration; it is not a functional standalone skills-only service.
 
 The source repository is [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt).
 Attach the archives to a GitHub release. Include hidden plugin configuration
@@ -74,7 +92,9 @@ credentials, customer plans, tokens, or private test outputs.
 ## Validation status
 
 Static package checks do not establish server interoperability. Streamable HTTP,
-OAuth, tenant isolation, tool schemas, and card rendering need live verification.
+OAuth, tenant isolation, and tool schemas still need live verification.
+The two-tool contract above comes from the supplied reference source; the direct
+MCP discovery attempt required authentication and did not verify the live tool list.
 The gateway implementation and credentials are not included here.
 
 ## Support and license

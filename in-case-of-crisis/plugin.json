@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "in-case-of-crisis",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis.",
   "author": {
     "name": "RockDove Solutions"
@@ -17,7 +17,7 @@
       "interface": {
         "displayName": "In Case of Crisis",
         "shortDescription": "Find your approved workplace emergency protocols.",
-        "longDescription": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis. Requires an In Case of Crisis account and authorization. No organizational protocols are bundled.",
+        "longDescription": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis. Search or browse protocols, choose between matches in conversation, and retrieve guidance, escalation contacts and citations by protocol ID. Requires an In Case of Crisis account and authorization. No organizational protocols are bundled.",
         "developerName": "RockDove Solutions",
         "category": "Productivity",
         "defaultPrompt": [

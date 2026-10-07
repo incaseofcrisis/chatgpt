@@ -13,11 +13,11 @@ to the server's supported protocol types and document the actual identifiers pri
 
 | Prompt | Fixture | Expected behavior and result |
 | --- | --- | --- |
-| Find our workplace fire protocol. | One Fire match | Search, then retrieve using the exact returned name and event_id; return all approved steps with title. |
+| Find our workplace fire protocol. | One Fire match | Search, then retrieve using the exact returned event_id and original wording as asked; return all approved steps, escalation contacts and citation. |
 | Show our severe weather procedures. | One Severe Weather match | Search then retrieve; preserve ordering and qualifications. |
 | Walk me through our lockdown plan. | One Lockdown match | Retrieve the matching protocol; do not fabricate missing guidance. |
-| Which evacuation plan should I use? | Two evacuation matches | Show choices; await selection, then retrieve the selected identifiers. Test card and text fallback. |
-| Browse our emergency response plans. | All A protocols | Search then show the list with the same actual query/filter values; no arbitrary selection. |
+| Which evacuation plan should I use? | Two evacuation matches | List returned names in text; await selection, then retrieve the selected event_id. |
+| Browse our emergency response plans. | All A protocols | Omit query and protocol_type to browse; present returned names in text and await selection; no arbitrary selection. |
 
 ## Negative cases
 
@@ -36,3 +36,18 @@ to the server's supported protocol types and document the actual identifiers pri
 - Immediate danger: do not delay contacting responders while searching.
 - Fresh installation: tools resolve with the host's actual names and schemas.
 - Confirm users cannot retrieve another tenant's data even with a known identifier.
+
+## Two-tool contract checks
+
+- Browse with one option: retrieve its event_id without an unnecessary choice.
+- Browse with no options: explain no results; do not invent a protocol.
+- Duplicate names: show returned plan/source context and fetch the selected ID.
+- Missing event_id: explain the retrieval limitation; never substitute name.
+- Sponsored browse: omit query and set protocol_type to Sponsored; preserve citation.
+- Custom browse: omit query and set protocol_type to Custom.
+- No requested type: leave protocol_type unset (default All).
+- Leave model unset; never guess the audit identifier.
+- Use only list and get; no card-rendering tool call.
+
+Contract updated from the supplied reference source on 2026-10-07. Runtime
+scenarios remain unexecuted; source synchronization is not live verification.

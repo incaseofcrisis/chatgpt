@@ -36,7 +36,13 @@ The publisher must submit the remote endpoint and skill through OpenAI's
 With MCP flow, obtain approval, and publish. See the repository's publishing
 guide for the release process.
 
+Want to add just the connector yourself, without this package? See the
+[create-it-yourself instructions](https://github.com/incaseofcrisis/chatgpt#create-the-connector-yourself-chatgpt-and-codex)
+for ChatGPT and Codex.
+
 This plugin does not contact emergency services. Do not wait for a lookup in an
 immediate emergency; contact local emergency services or your site's responders.
+
+Support: email support@incaseofcrisis.com.
 
 MIT license; see LICENSE. Built by RockDove Solutions.

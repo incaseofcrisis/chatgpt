@@ -2,6 +2,10 @@
 
 ## GitHub release
 
+The current package version is **1.2.0**. Label the GitHub release **1.2**
+and use tag **v1.2**; attach `in-case-of-crisis-1.2.0.zip` as the complete plugin.
+The two-part release label does not replace the three-part manifest version.
+
 1. Use [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt),
    the repository configured as `origin` in this checkout.
 2. Upload the source, including the plugin's hidden compatibility files.

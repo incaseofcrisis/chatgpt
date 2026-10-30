@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "in-case-of-crisis",
-  "version": "0.2.2",
+  "version": "1.2.0",
   "description": "Retrieve the protocols available to your signed-in In Case of Crisis account within your organization.",
   "author": {
     "name": "RockDove Solutions, Inc."

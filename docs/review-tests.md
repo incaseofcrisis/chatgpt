@@ -524,7 +524,7 @@ the visible boundary checks and publisher-confirmed absence of ICC searches or
 retrievals. Full tool arguments and traces were not captured for the Work-mode
 positive runs, so do not represent this as complete trace-verified acceptance.
 
-The prepared submission package is version **0.2.2**. Preview testing used 0.2.1
+The prepared submission package is version **1.2.0**. Preview testing used 0.2.1
 with the final functional skill text; the skill's only subsequent change is its
 version metadata. A final saved portal version still requires connection/scans
 and applicable case checks. No gateway code changed in this repository.

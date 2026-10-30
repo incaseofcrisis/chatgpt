@@ -1,7 +1,7 @@
 # In Case of Crisis — ChatGPT plugin
 
 Retrieve the protocols available to your signed-in In Case of Crisis account
-within your organization through ChatGPT and Codex. Built by RockDove Solutions, Inc. Version **0.2.2**, MIT licensed.
+within your organization through ChatGPT and Codex. Built by RockDove Solutions, Inc. Version **1.2.0**, MIT licensed.
 
 The plugin bundles a workflow skill and a connection to the existing In Case
 of Crisis MCP gateway. It includes no customer protocols or credentials.
@@ -230,8 +230,8 @@ python3 bin/package-plugin.py
 
 This creates two archives in `dist/`:
 
-- `in-case-of-crisis-0.2.2.zip`: the complete plugin, including its MCP configuration, for the initial public submission and compatible local hosts.
-- `in-case-of-crisis-skills-0.2.2.zip`: a supplementary skill bundle for hosts that explicitly accept it. It omits MCP connection configuration and is not the complete plugin or the initial public submission archive.
+- `in-case-of-crisis-1.2.0.zip`: the complete plugin, including its MCP configuration, for the initial public submission and compatible local hosts.
+- `in-case-of-crisis-skills-1.2.0.zip`: a supplementary skill bundle for hosts that explicitly accept it. It omits MCP connection configuration and is not the complete plugin or the initial public submission archive.
 
 The source repository is [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt).
 Attach the archives to a GitHub release. Include hidden plugin configuration

@@ -11,7 +11,7 @@ description: >
   This is a retrieval workflow, not a tool for creating or editing plans,
   sending alerts, contacting responders or managing subscriptions.
 metadata:
-  version: "0.2.2"
+  version: "1.2.0"
 ---
 
 If someone describes immediate danger, briefly tell them to contact local

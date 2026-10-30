@@ -121,7 +121,7 @@ portal-version checks remain unverified. A recording has been supplied; see its 
 
 ## Demo recording verification
 
-Recording: [In Case of Crisis plugin demo](https://github.com/incaseofcrisis/chatgpt/releases/download/v1.1/InCaseofCrisis-plugin-demo.mov).
+Recording: [In Case of Crisis plugin demo](https://github.com/incaseofcrisis/chatgpt/releases/download/v1.2/033026-InCaseofCrisis-plugin-demo.mov).
 
 - Public unauthenticated access: verified October 30, 2026; download returned
   HTTP 200 and 47,887,899 bytes. GitHub serves it as an attachment.
@@ -534,3 +534,15 @@ fresh-login verification, required scans/attestations, tool annotations, and
 server authorization/revocation checks. Broad search relevance remains an
 observed gateway concern. Automatic skill activation for the purchase prompt
 was not established by the explicit-invocation diagnostic.
+
+
+### Demo link aligned with release v1.2
+
+The publisher reattached the demo to release v1.2. Both manifests now reference
+https://github.com/incaseofcrisis/chatgpt/releases/download/v1.2/033026-InCaseofCrisis-plugin-demo.mov.
+Public unauthenticated access returned HTTP 200 and 47,887,899 bytes. The release
+asset was found on a published (non-draft) release. Earlier visual-review
+confirmation still has its original publisher-reported evidence level.
+The 1.2.0 archive was rebuilt after this URL change; replace the existing release
+ZIP with the rebuilt file before using that download for OpenAI submission.
+GitHub release asset SHA-256 matched the original local recording.

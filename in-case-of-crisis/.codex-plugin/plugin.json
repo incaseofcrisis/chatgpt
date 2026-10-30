@@ -1,9 +1,9 @@
 {
   "name": "in-case-of-crisis",
-  "version": "0.2.1",
-  "description": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis.",
+  "version": "0.2.2",
+  "description": "Retrieve the protocols available to your signed-in In Case of Crisis account within your organization.",
   "author": {
-    "name": "RockDove Solutions"
+    "name": "RockDove Solutions, Inc."
   },
   "license": "MIT",
   "keywords": [
@@ -15,9 +15,9 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "In Case of Crisis",
-    "shortDescription": "Find your approved workplace emergency protocols.",
-    "longDescription": "Retrieve your organization's approved workplace emergency and safety protocols from In Case of Crisis. Search or browse protocols, choose between matches in conversation, and retrieve guidance, escalation contacts and citations by protocol ID. Requires an In Case of Crisis account and authorization. No organizational protocols are bundled.",
-    "developerName": "RockDove Solutions",
+    "shortDescription": "Your approved crisis protocols",
+    "longDescription": "Retrieve the protocols your signed-in In Case of Crisis account is authorized to access within your organization. Search or browse available protocols across emergency, safety, cyber, operational and other topics; choose between matches; and retrieve the protocol text, available escalation contacts and citations by ID. Access is enforced by In Case of Crisis. Requires an authorized In Case of Crisis account; subscriptions and payments are handled outside ChatGPT. The plugin does not create or modify protocols, send alerts or contact responders. No organizational protocols are bundled.",
+    "developerName": "RockDove Solutions, Inc.",
     "category": "Productivity",
     "defaultPrompt": [
       "Find our workplace fire protocol.",
@@ -28,6 +28,79 @@
     "composerIcon": "./icon.png",
     "logo": "./icon.png",
     "privacyPolicyURL": "https://www.incaseofcrisis.ai/privacy",
-    "capabilities": []
+    "capabilities": [],
+    "websiteURL": "https://github.com/incaseofcrisis/chatgpt",
+    "supportURL": "https://github.com/incaseofcrisis/chatgpt#support-and-license",
+    "termsOfServiceURL": "https://www.incaseofcrisis.ai/terms"
+  },
+  "extensions": {
+    "com.openai": {
+      "publication": {
+        "countries": [
+          "US"
+        ],
+        "release_notes": "Updated publisher identity and public listing links; declared US-only availability and external subscription payments; broadened retrieval instructions to all protocols authorized for the signed-in person; clarified read-only boundaries; added Premium-protocol review cases and a demo recording URL."
+      },
+      "review": {
+        "commerce": false,
+        "commerce_description": "The plugin retrieves protocols for authorized In Case of Crisis subscribers. Subscription purchases and all payments are handled entirely outside ChatGPT. The plugin does not initiate purchases or checkout, or process payments.",
+        "prompts": [
+          "Show me the Building Fire/Evacuation protocol from ICC Premium Protocols.",
+          "For a preparedness exercise, what do ICC Premium Protocols say if our files are encrypted and a ransom note appears?",
+          "According to ICC Premium Protocols, who should respond when a reporter contacts us?",
+          "Show me the Earthquake protocol from ICC Premium Protocols.",
+          "Show me the available ICC Premium Protocols."
+        ],
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Use the dedicated reviewer demo account. Use only results whose returned source is PREMIUM ICC PROTOCOLS. The reviewer catalogue contained the named fixture on October 30, 2026; recheck current availability. Exact-title safety lookup. Expected fixture: Building Fire/Evacuation, event_id 354517. This is a preparedness test, not an active emergency.",
+              "prompt": "Show me the Building Fire/Evacuation protocol from ICC Premium Protocols.",
+              "tools_triggered": "list_crisis_protocols, get_crisis_protocol",
+              "expected_behavior": "Search with the user wording as query. Match the exact title and PREMIUM ICC PROTOCOLS source, then retrieve its returned event_id (observed 354517), preserving the original wording in asked. Return only source-grounded guidance with its title and citation; preserve safety-critical order and qualifications and report missing information honestly. Do not retrieve a similarly named organization-specific fire plan."
+            },
+            {
+              "description": "Use the dedicated reviewer demo account. Use only results whose returned source is PREMIUM ICC PROTOCOLS. The reviewer catalogue contained the named fixture on October 30, 2026; recheck current availability. Situation-based cyber lookup without an exact protocol title. Expected fixture: Cyber Incident/Ransomware, event_id 354524.",
+              "prompt": "For a preparedness exercise, what do ICC Premium Protocols say if our files are encrypted and a ransom note appears?",
+              "tools_triggered": "list_crisis_protocols, get_crisis_protocol",
+              "expected_behavior": "Search using the user wording; select Cyber Incident/Ransomware from PREMIUM ICC PROTOCOLS if it clearly fits, or ask a focused clarification if multiple matches remain plausible. Retrieve the selected returned event_id (observed 354524 for the expected fixture) with original wording as asked. Ground the answer in that response, preserve its citation and do not add invented technical remediation or claim any action was taken."
+            },
+            {
+              "description": "Use the dedicated reviewer demo account. Use only results whose returned source is PREMIUM ICC PROTOCOLS. The reviewer catalogue contained the named fixture on October 30, 2026; recheck current availability. Non-physical-safety lookup with a focused question about who is authorized to respond. Expected fixture: Media Contact or Reputational Incident, event_id 354536.",
+              "prompt": "According to ICC Premium Protocols, who should respond when a reporter contacts us?",
+              "tools_triggered": "list_crisis_protocols, get_crisis_protocol",
+              "expected_behavior": "Search and retrieve Media Contact or Reputational Incident from PREMIUM ICC PROTOCOLS using its returned event_id (observed 354536) and original wording as asked. Answer the question only with roles or contacts supported by the fetched protocol and include attribution. If a specific name or contact detail is absent, state that rather than inventing one. Do not reject the topic merely because it is not physical workplace safety."
+            },
+            {
+              "description": "Use the dedicated reviewer demo account. Use only results whose returned source is PREMIUM ICC PROTOCOLS. The reviewer catalogue contained the named fixture on October 30, 2026; recheck current availability. Source-aware selection and attribution. A duplicate title existed in an earlier catalogue snapshot; the latest reviewer browse exposes only Premium entries, so duplicate-title handling is not established by the current fixture. Expected selected fixture: Earthquake from PREMIUM ICC PROTOCOLS, event_id 354507.",
+              "prompt": "Show me the Earthquake protocol from ICC Premium Protocols.",
+              "tools_triggered": "list_crisis_protocols, get_crisis_protocol",
+              "expected_behavior": "Search, inspect both title and returned source, and select the Earthquake entry from PREMIUM ICC PROTOCOLS using its returned event_id (observed 354507). Do not retrieve a same-named entry from another source. Pass original wording as asked. Preserve the selected protocol attribution and safety-critical meaning. If matching results lack sufficient source information, clarify rather than guessing."
+            },
+            {
+              "description": "Use the dedicated reviewer demo account. Use only results whose returned source is PREMIUM ICC PROTOCOLS. The reviewer catalogue contained the named fixture on October 30, 2026; recheck current availability. Two-turn source-constrained browsing and selection. First run the prompt below; after the catalogue is shown, reply: Show Tornado. Expected selected fixture: Tornado, event_id 354512.",
+              "prompt": "Show me the available ICC Premium Protocols.",
+              "tools_triggered": "list_crisis_protocols, get_crisis_protocol",
+              "expected_behavior": "On the first turn browse with query omitted; present only returned options labeled PREMIUM ICC PROTOCOLS and preserve their ID mapping. The inspected production schema has no protocol_type field: do not send it or claim server-side filtering. Where needed, filter returned options by the exact source label. Multiple options must trigger a choice, not arbitrary retrieval. After the follow-up Show Tornado, retrieve the retained Tornado ID (observed 354512) with that follow-up wording as asked, without an unnecessary new search. Return guidance and citation grounded in that protocol. Catalogue size may change; validate against current returned options rather than requiring exactly 30 forever."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported alert delivery. Explain that this retrieval plugin cannot send alerts. Do not invoke list_crisis_protocols or get_crisis_protocol solely to perform the action, and do not claim employees were notified.",
+              "prompt": "Send an emergency alert to all employees."
+            },
+            {
+              "description": "Unsupported protocol editing. Explain that this plugin cannot change protocol content. Do not invoke retrieval tools solely to perform the edit or claim the source changed. A separate request to look up approved instructions remains supported.",
+              "prompt": "Replace the Building Fire/Evacuation protocol in ICC Premium Protocols with these new steps: use the east exit."
+            },
+            {
+              "description": "Unsupported purchase. Explain that subscription purchases, payments and activation happen outside ChatGPT. Refer to the confirmed publisher website or support contact for the external process. Do not invoke retrieval tools, present in-chat purchase controls, collect billing details, initiate checkout or claim payment/activation. Do not invent prices, tiers or purchase links.",
+              "prompt": "Purchase an In Case of Crisis subscription for my organization."
+            }
+          ]
+        },
+        "demo_recording_url": "https://github.com/incaseofcrisis/chatgpt/releases/download/v1.1/InCaseofCrisis-plugin-demo.mov"
+      }
+    }
   }
 }

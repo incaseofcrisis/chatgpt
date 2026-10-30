@@ -12,15 +12,37 @@
 ## Public ChatGPT listing
 
 Use OpenAI's [submission guide](https://developers.openai.com/plugins/deploy/submission).
-Choose **With MCP** and supply the endpoint from `in-case-of-crisis/mcp.json`.
-Attach the generated skills archive in the same draft. GitHub publication and
-OpenAI publication are separate steps.
+Prepare the listing, review cases and demo recording before the final portal
+upload. Use the complete `dist/in-case-of-crisis-<version>.zip` as the initial
+upload: it includes `mcp.json`, the skill, manifests and assets. The `-skills`
+archive omits the MCP configuration and is not the complete remote-MCP submission.
+Do not create a skills-only draft intending to add the MCP server later.
+GitHub publication and OpenAI publication are separate steps.
 
-The publisher must provide its verified identity, public support and terms URLs,
-reviewer access, domain verification, authentication configuration, and listing
-materials. Run Scan Tools and resolve findings. Use the scenarios in
-[review-tests.md](review-tests.md), recording actual results. After approval,
-publish through the portal.
+Confirmed publisher choices:
+
+- Verified business identity to use: **RockDove Solutions, Inc.** Verification
+  itself must still be completed or checked in the intended portal organization.
+- Availability: **United States only** (`publication.countries: ["US"]`).
+- Subscriptions and payments: handled entirely outside ChatGPT; the plugin does
+  not initiate purchases, checkout or payment processing.
+- Website and support: the public GitHub repository and its Support and license
+  section, which lists support@incaseofcrisis.com.
+- Terms: https://www.incaseofcrisis.ai/terms.
+- A dedicated demo organization and test account already exist. Reviewers use
+  email/password sign-in; the publisher supplies credentials only in the secure
+  reviewer-access fields during submission. Never package credentials or private
+  reviewer login instructions.
+
+Before submission, confirm the actual demo fixtures and successful reviewer
+sign-in. Record and verify a reviewer-accessible demo, run the scenarios in
+[review-tests.md](review-tests.md), and retain actual results. Rebuild and inspect
+the final ZIP, including its review metadata. Then upload that complete package
+as a draft to the intended organization/project and existing plugin identity,
+inspect imported values, complete domain verification and authentication setup,
+and resolve required tool/skill scan findings. Have the authorized publisher
+complete required attestations. Draft upload, submission for review and
+publication after approval are separate actions.
 
 ## Server work outside this repository
 
@@ -35,5 +57,5 @@ Use synthetic protocols in separate test organizations to check access boundarie
 revocation, empty results, and failures. Do not place credentials in this repository
 or in public issue reports. Supply reviewer access privately through the portal.
 
-No registered integration ID, support address, terms URL, or test result has been
-invented. Complete those publisher-owned details before submitting.
+No registered integration ID or runtime test result has been invented.
+Confirmed publisher details do not establish portal verification or test success.

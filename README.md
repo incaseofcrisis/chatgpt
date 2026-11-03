@@ -1,5 +1,25 @@
 # In Case of Crisis — ChatGPT plugin
 
+<h2 align="center">Skool Community</h2>
+
+<p align="center"><strong>New to In Case of Crisis AI? Start here.</strong></p>
+
+<p align="center">
+  Your step-by-step guide to adding In Case of Crisis to ChatGPT.<br>
+  Follow it after you sign up.
+</p>
+
+<p align="center">
+  <a href="./docs/icc-mcp-connector-install-guide-chatgpt-v2.0.pdf"><img src="https://img.shields.io/badge/%F0%9F%93%84%20Open%20the%20Install%20Guide-PDF%20v2.0-203864?style=for-the-badge" alt="Open the Install Guide, PDF v2.0"></a>
+</p>
+
+<p align="center"><sub>Prefer to follow along on this page? Jump to <a href="#create-the-connector-yourself-chatgpt-and-codex">Create the connector yourself</a>.</sub></p>
+
+---
+
+> *The rest of this page is reference material for plugin and connector setup.
+> If you just signed up, the install guide above is all you need.*
+
 Retrieve the protocols available to your signed-in In Case of Crisis account
 within your organization through ChatGPT and Codex. Built by RockDove Solutions, Inc. Version **1.2.2**, MIT licensed.
 

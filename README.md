@@ -1,4 +1,15 @@
-# In Case of Crisis — ChatGPT plugin
+<h1 align="center"><img src="./assets/in-case-of-crisis-logo.png" width="32" align="absmiddle"> In Case of Crisis — ChatGPT Plugin &amp; Connector</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.2.2-203864" alt="version 1.2.2">
+  <img src="https://img.shields.io/badge/platform-ChatGPT%20%7C%20Codex-3E91C5" alt="ChatGPT | Codex">
+  <img src="https://img.shields.io/badge/status-active-27AE60" alt="status active">
+  <img src="https://img.shields.io/badge/license-MIT-3E91C5" alt="license MIT">
+</p>
+
+<p align="center"><img src="./assets/rockdove-logo.png" width="18" align="absmiddle"> <em>Built by RockDove Solutions</em></p>
+
+---
 
 <h2 align="center">Skool Community</h2>
 

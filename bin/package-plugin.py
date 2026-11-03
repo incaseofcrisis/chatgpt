@@ -14,6 +14,17 @@ def validate_submission(plugin: Path, manifest: dict, compat: dict) -> None:
     """Check local submission facts; public access and portal checks remain separate."""
     extension = manifest["extensions"]["com.openai"]
     interface = extension["interface"]
+    mcp = json.loads((plugin / "mcp.json").read_text())
+    if mcp.get("$schema") != "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json":
+        raise ValueError("Portable mcp.json requires the Agent Plugins MCP schema")
+    servers = mcp.get("mcpServers")
+    if not isinstance(servers, dict) or len(servers) != 1:
+        raise ValueError("Plugin-level review cases require exactly one MCP server")
+    server = next(iter(servers.values()))
+    if not isinstance(server, dict) or server.get("type") != "streamable-http":
+        raise ValueError("This remote MCP release requires portable type streamable-http")
+    if not isinstance(server.get("url"), str) or not server["url"].startswith("https://"):
+        raise ValueError("The remote server needs its public HTTPS endpoint")
     for key, limit in (("displayName", 30), ("shortDescription", 30),
                        ("longDescription", 4000), ("developerName", 80)):
         value = interface.get(key)
@@ -103,10 +114,14 @@ def main() -> None:
         raise ValueError("Plugin name must match directory")
     if manifest["extensions"]["com.openai"]["interface"] != compat["interface"]:
         raise ValueError("OpenAI presentation metadata differs")
-    if json.loads((plugin / "mcp.json").read_text()) != json.loads(
-        (plugin / ".mcp.json").read_text()
-    ):
-        raise ValueError("MCP configurations differ")
+    portable_mcp = json.loads((plugin / "mcp.json").read_text())
+    legacy_mcp = json.loads((plugin / ".mcp.json").read_text())
+    normalized_legacy = json.loads(json.dumps(legacy_mcp))
+    for server in normalized_legacy.get("mcpServers", {}).values():
+        if server.get("type") == "http":
+            server["type"] = "streamable-http"
+    if portable_mcp.get("mcpServers") != normalized_legacy.get("mcpServers"):
+        raise ValueError("Portable and compatibility MCP connections differ")
     skill = "skills/in-case-of-crisis/SKILL.md"
     if f'version: "{version}"' not in (plugin / skill).read_text():
         raise ValueError("Skill version differs")
@@ -124,8 +139,11 @@ def main() -> None:
         with ZipFile(archive, "w", ZIP_DEFLATED) as output:
             for name in names:
                 content = (plugin / name).read_bytes()
-                if suffix and name == ".codex-plugin/plugin.json":
-                    skill_manifest = {k: v for k, v in compat.items() if k != "mcpServers"}
+                if suffix and name in ("plugin.json", ".codex-plugin/plugin.json"):
+                    skill_manifest = json.loads(content)
+                    skill_manifest.pop("mcpServers", None)
+                    # A supplemental skill bundle has no MCP server to own review cases.
+                    skill_manifest.get("extensions", {}).get("com.openai", {}).pop("review", None)
                     content = (json.dumps(skill_manifest, indent=2) + "\n").encode()
                 output.writestr(f"{plugin.name}/{name}", content)
         with ZipFile(archive) as check:

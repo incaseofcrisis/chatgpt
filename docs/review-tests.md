@@ -546,3 +546,40 @@ confirmation still has its original publisher-reported evidence level.
 The 1.2.0 archive was rebuilt after this URL change; replace the existing release
 ZIP with the rebuilt file before using that download for OpenAI submission.
 GitHub release asset SHA-256 matched the original local recording.
+
+
+## Submission-package correction — November 3, 2026
+
+The first public ZIP upload was rejected because plugin-level test_cases require
+exactly one recognized MCP server. The inspected 1.2.0 full ZIP contained one
+server in mcp.json, but its portable configuration lacked the required $schema
+and used legacy type http. Both violate the published portable MCP schema.
+An importer skipping this invalid component could observe zero usable servers;
+its internal recognized-server count was not available from the error alone.
+
+Prepared corrective version 1.2.1: portable mcp.json now declares the canonical
+MCP schema and streamable-http type. The verified endpoint is unchanged. Legacy
+.mcp.json retains its supported legacy http spelling; the builder now compares
+the two connections after transport normalization rather than byte-equating
+these different formats. Full-plugin review cases remain at plugin level.
+Supplemental skills-only bundles now omit MCP review metadata, since they have
+no server to own those cases. They are not the complete public MCP submission.
+New checks reject missing MCP schema, legacy portable transport and zero or
+multiple servers for plugin-level review cases. Actual portal acceptance is
+pending a retry; schema validation is not a completed portal scan.
+
+
+## Listing-description finding — November 3, 2026
+
+The publisher reported that the Platform accepted the draft, then flagged:
+Remove pricing, subscription offers, and temporary promotions from the description.
+No monetary price, trial or promotion appeared in the package listing, but the
+long description mentioned subscriptions and payments. Removed that commercial
+clause from both listing manifests and retained the authorized-account
+requirement. The separate review.commerce disclosure remains accurate and
+unchanged; it is review information, not public listing copy.
+
+Prepared version 1.2.2 for upload to the existing Platform draft. The skill's
+only change since 1.2.1 is its version metadata; retrieval behavior and review
+cases are unchanged. The new metadata/skill scan results remain unverified until
+the publisher uploads and inspects this version.

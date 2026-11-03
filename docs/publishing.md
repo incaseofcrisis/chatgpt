@@ -2,8 +2,8 @@
 
 ## GitHub release
 
-The current package version is **1.2.0**. Label the GitHub release **1.2**
-and use tag **v1.2**; attach `in-case-of-crisis-1.2.0.zip` as the complete plugin.
+The current package version is **1.2.2**. For a new patch release, use title **1.2.2**
+and tag **v1.2.2**; attach `in-case-of-crisis-1.2.2.zip` as the complete plugin.
 The two-part release label does not replace the three-part manifest version.
 
 1. Use [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt),

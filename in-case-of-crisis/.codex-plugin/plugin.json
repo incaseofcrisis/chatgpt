@@ -1,6 +1,6 @@
 {
   "name": "in-case-of-crisis",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Retrieve the protocols available to your signed-in In Case of Crisis account within your organization.",
   "author": {
     "name": "RockDove Solutions, Inc."
@@ -16,7 +16,7 @@
   "interface": {
     "displayName": "In Case of Crisis",
     "shortDescription": "Your approved crisis protocols",
-    "longDescription": "Retrieve the protocols your signed-in In Case of Crisis account is authorized to access within your organization. Search or browse available protocols across emergency, safety, cyber, operational and other topics; choose between matches; and retrieve the protocol text, available escalation contacts and citations by ID. Access is enforced by In Case of Crisis. Requires an authorized In Case of Crisis account; subscriptions and payments are handled outside ChatGPT. The plugin does not create or modify protocols, send alerts or contact responders. No organizational protocols are bundled.",
+    "longDescription": "Retrieve the protocols your signed-in In Case of Crisis account is authorized to access within your organization. Search or browse available protocols across emergency, safety, cyber, operational and other topics; choose between matches; and retrieve the protocol text, available escalation contacts and citations by ID. Access is enforced by In Case of Crisis. Requires an authorized In Case of Crisis account. The plugin does not create or modify protocols, send alerts or contact responders. No organizational protocols are bundled.",
     "developerName": "RockDove Solutions, Inc.",
     "category": "Productivity",
     "defaultPrompt": [
@@ -39,7 +39,7 @@
         "countries": [
           "US"
         ],
-        "release_notes": "Updated publisher identity and public listing links; declared US-only availability and external subscription payments; broadened retrieval instructions to all protocols authorized for the signed-in person; clarified read-only boundaries; added Premium-protocol review cases and a demo recording URL."
+        "release_notes": "Revised the public listing description to focus on protocol retrieval, authorized access and functional limitations. Retained the MCP configuration, review cases and demo recording."
       },
       "review": {
         "commerce": false,

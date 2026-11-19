@@ -2,8 +2,8 @@
 
 ## GitHub release
 
-The current package version is **1.2.2**. For a new patch release, use title **1.2.2**
-and tag **v1.2.2**; attach `in-case-of-crisis-1.2.2.zip` as the complete plugin.
+The current package version is **1.3.0**. For a new release, use title **1.3.0**
+and tag **v1.3.0**; attach `in-case-of-crisis-1.3.0.zip` as the complete plugin.
 The two-part release label does not replace the three-part manifest version.
 
 1. Use [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt),
@@ -52,8 +52,10 @@ publication after approval are separate actions.
 
 The original gateway configuration declares HTTP but supplied no interoperability
 results. Verify Streamable HTTP and OAuth against the real host; do not change
-transport based solely on a URL suffix. Confirm both tools (`list_crisis_protocols` and `get_crisis_protocol`) and
-their parameter schemas, including required `event_id` on retrieval. Verify
+transport based solely on a URL suffix. Confirm all seven tools (`list_crisis_protocols`, `get_crisis_protocol`,
+`list_incident_report_forms`, `start_incident_report`,
+`get_submitted_incident_reports`, `list_organizations` and `switch_organization`)
+and their parameter schemas, including required `event_id` on retrieval. Verify
 that ambiguous matches are presented as text choices and the selected ID is
 used to fetch the protocol. Tool metadata must accurately reflect real server side effects.
 

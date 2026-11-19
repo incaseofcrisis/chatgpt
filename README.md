@@ -1,7 +1,7 @@
 <h1 align="center"><img src="./assets/in-case-of-crisis-logo.png" width="32" align="absmiddle"> In Case of Crisis — ChatGPT Plugin &amp; Connector</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.2.2-203864" alt="version 1.2.2">
+  <img src="https://img.shields.io/badge/version-1.3.0-203864" alt="version 1.3.0">
   <img src="https://img.shields.io/badge/platform-ChatGPT%20%7C%20Codex-3E91C5" alt="ChatGPT | Codex">
   <img src="https://img.shields.io/badge/status-active-27AE60" alt="status active">
   <img src="https://img.shields.io/badge/license-MIT-3E91C5" alt="license MIT">
@@ -32,7 +32,7 @@
 > If you just signed up, the install guide above is all you need.*
 
 Retrieve the protocols available to your signed-in In Case of Crisis account
-within your organization through ChatGPT and Codex. Built by RockDove Solutions, Inc. Version **1.2.2**, MIT licensed.
+within your organization through ChatGPT and Codex. Built by RockDove Solutions, Inc. Version **1.3.0**, MIT licensed.
 
 The plugin bundles a workflow skill and a connection to the existing In Case
 of Crisis MCP gateway. It includes no customer protocols or credentials.
@@ -55,6 +55,9 @@ organization.
 - “Find our workplace fire protocol.”
 - “Show our severe weather procedures.”
 - “Browse our emergency response plans.”
+- “I need to file an incident report.”
+- “Show the incident reports I submitted.”
+- “Which organization am I in?”
 
 This is a protocol lookup assistant, not an emergency dispatch service.
 In immediate danger, contact local emergency services or your site's responders.
@@ -69,10 +72,11 @@ custom MCP servers as plugins: a workspace administrator creates it once
 
 > **In a life-threatening emergency, call 9-1-1 first.** The connector
 > returns your organization's approved guidance. It does not contact
-> emergency services, send notifications, or file incident reports; use the
-> In Case of Crisis app for those actions.
+> emergency services, send notifications, or submit incident reports for you
+> (it can give you a link to the report form); use the In Case of Crisis app
+> for those actions.
 
-The connector is read-only. Each employee signs in with their own In Case of
+The connector never creates or changes protocols or reports. Each employee signs in with their own In Case of
 Crisis account, so ChatGPT only sees the protocols published for that
 person's organization and never sees their In Case of Crisis password.
 
@@ -223,21 +227,30 @@ Codex, v2.0 (October 27, 2026).*
 
 ## Tools
 
-The connector contract has two tools, used in sequence:
+The connector contract has seven tools. The two protocol tools are used in
+sequence (search, then retrieve). The incident-report and organization tools
+are used only when the user asks for them:
 
 | Tool | Purpose and inputs |
 | --- | --- |
 | `list_crisis_protocols` | Search approved material with optional `query`; omit it to browse the catalogue. When the discovered server schema supports it, optional `protocol_type`: `All` (default), `Custom` (organization plans), or `Sponsored` (ICC-curated protocols with citations). Set a filter only when requested. |
 | `get_crisis_protocol` | Retrieve one protocol's full procedure, escalation contacts and citation. Requires `event_id` from a list result. Pass original user wording as `asked`; `name` is informational only. |
+| `list_incident_report_forms` | List the forms available for filing a new incident report. No required inputs. |
+| `start_incident_report` | Return a link to one form, valid for about 5 minutes. Requires `event_id` from the forms list. Reports are completed and submitted on the form page, not through the connector. |
+| `get_submitted_incident_reports` | List the person's most recent submitted reports (optional `max_return`, 1 to 50, default 10), or return one in full with `incident_id`. Optional `include_report_html` adds the organization's formatted report page. |
+| `list_organizations` | List the organizations the signed-in person belongs to and which one is active. No inputs. |
+| `switch_organization` | Make another of the person's organizations active, so every tool answers from that organization. Requires `org_id` from `list_organizations`. Call it only when the user asks. |
 
-Both tools accept optional `model` audit metadata; the skill leaves it unset.
+Every tool except `list_organizations` and `switch_organization` accepts
+optional `model` audit metadata; the skill leaves it unset.
 For ambiguous matches, the assistant lists the returned names and asks the user
 to choose, then retrieves the selected ID. There is no separate selection-card
 tool in this contract. Same-named protocols must be distinguished by their IDs.
 
-Contract synchronized from the supplied reference project's skill and README on
-**2026-10-07**. This is a source-based update, not a successful live MCP discovery.
-The connector owns the tool definitions and may change independently of this package.
+All seven tool definitions were read from the In Case of Crisis gateway on
+**2026-11-19** through a connected MCP connector. This is not a discovery run
+from this repository. The connector owns the tool definitions and may change
+independently of this package.
 
 ## Package contents
 
@@ -246,7 +259,7 @@ The installable plugin root is `in-case-of-crisis/`:
 - `plugin.json`: portable Agent Plugins manifest with OpenAI presentation metadata.
 - `mcp.json`: remote MCP connection for portable hosts.
 - `.codex-plugin/plugin.json` and `.mcp.json`: compatibility configuration.
-- `skills/in-case-of-crisis/SKILL.md`: protocol lookup workflow.
+- `skills/in-case-of-crisis/SKILL.md`: protocol lookup, incident report, and organization workflows.
 - `icon.png` and `LICENSE`: branding and redistribution license.
 
 There are no runtime dependencies or local server processes in this repository.
@@ -261,8 +274,8 @@ python3 bin/package-plugin.py
 
 This creates two archives in `dist/`:
 
-- `in-case-of-crisis-1.2.2.zip`: the complete plugin, including its MCP configuration, for the initial public submission and compatible local hosts.
-- `in-case-of-crisis-skills-1.2.2.zip`: a supplementary skill bundle for hosts that explicitly accept it. It omits MCP connection configuration and is not the complete plugin or the initial public submission archive.
+- `in-case-of-crisis-1.3.0.zip`: the complete plugin, including its MCP configuration, for the initial public submission and compatible local hosts.
+- `in-case-of-crisis-skills-1.3.0.zip`: a supplementary skill bundle for hosts that explicitly accept it. It omits MCP connection configuration and is not the complete plugin or the initial public submission archive.
 
 The source repository is [incaseofcrisis/chatgpt](https://github.com/incaseofcrisis/chatgpt).
 Attach the archives to a GitHub release. Include hidden plugin configuration
